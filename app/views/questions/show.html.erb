@@ -5,3 +5,19 @@
   <p>
     <%= @question.content %>
   </p>
+
+  <%= link_to new_question_answer_path(@question) do %>
+    Answer Question
+  <% end %>
+
+  <br>
+
+  <h5> Answers </h5>
+
+  <% @question.answers.each do |answer| %>
+    <li>
+      <%= answer.content %>
+        <%= link_to edit_question_answer_path(@question, answer) do %>Edit<% end %>
+        <%= link_to  question_answer_path(@question, answer), :data => {:method => 'delete'} do %> Delete <% end %>
+    </li>
+  <% end %>
