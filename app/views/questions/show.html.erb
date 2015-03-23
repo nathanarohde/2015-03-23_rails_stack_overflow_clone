@@ -1,0 +1,7 @@
+<h4> <%= @question.title %> </h4>
+  <%= link_to edit_question_path(@question) do %> Edit <% end %>
+  <%= link_to question_path(@question), :data => {:method => 'delete'} do %> Delete <% end %>
+
+  <p>
+    <%= @question.content %>
+  </p>
