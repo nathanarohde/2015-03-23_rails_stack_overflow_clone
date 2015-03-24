@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323173436) do
+ActiveRecord::Schema.define(version: 20150324210957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answerVotes", force: :cascade do |t|
+    t.integer "total"
+    t.integer "answer_id"
+  end
+
+  create_table "answerVotes_users", id: false, force: :cascade do |t|
+    t.integer "answerVote_id"
+    t.integer "user_id"
+  end
+
+  add_index "answerVotes_users", ["answerVote_id"], name: "index_answerVotes_users_on_answerVote_id", using: :btree
+  add_index "answerVotes_users", ["user_id"], name: "index_answerVotes_users_on_user_id", using: :btree
 
   create_table "answers", force: :cascade do |t|
     t.text    "content"
