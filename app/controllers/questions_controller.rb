@@ -1,10 +1,13 @@
 class QuestionsController < ApplicationController
+before_action :require_user, only: [:new]
+
   def index
     @questions = Question.all
   end
 
   def show
     @question = Question.find(params[:id])
+    @user = @question.user
   end
 
   def edit
@@ -27,6 +30,7 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
+    @question.user_id = current_user.id
     if @question.save
       flash[:notice] = @question.title + 'Successfully added!'
       redirect_to questions_path
