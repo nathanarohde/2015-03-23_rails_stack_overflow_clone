@@ -1,5 +1,16 @@
 class User < ActiveRecord::Base
   has_many :questions
-  validates :name, presence => true
-  validates :email, presence => true
+  validates :name, presence: true
+  validates_uniqueness_of :name
+  validates :email, presence: true
+  validates_uniqueness_of :email
+
+  def self.authenticate(name)
+    user = User.where(name: name).first
+    if user
+    else
+      nil
+    end
+  end
+
 end

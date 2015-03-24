@@ -1,4 +1,9 @@
 <h4> Stack Overflow Clone </h4>
+<%= link_to 'Register.', new_user_path %>
+<br>
+<%= link_to 'Sign in.', log_in_path %>
+<br>
+<%= link_to 'Sign out.', log_out_path %>
 
 <ul>
   <% @questions.each do |question| %>
