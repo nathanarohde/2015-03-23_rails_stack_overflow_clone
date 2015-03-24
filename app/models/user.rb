@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   def self.authenticate(name)
     user = User.where(name: name).first
     if user
+      user
     else
       nil
     end
