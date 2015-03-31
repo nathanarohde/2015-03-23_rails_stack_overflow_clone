@@ -8,12 +8,11 @@
     <%= @question.content %>
   </p>
 
-  <%= link_to new_question_answer_path(@question) do %>
-    Answer Question
-  <% end %>
+  <%= link_to 'Answer Question', new_question_answer_path(@question) %>
 
   <br>
 
   <h5> Answers </h5>
+    <%= render @answers %>
 
 <% end %>

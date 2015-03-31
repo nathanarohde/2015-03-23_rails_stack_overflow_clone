@@ -1,0 +1,11 @@
+<%= form_for answer, remote: true do |f| %>
+ <%= answer.content %>
+<% end %>
+
+  <br>
+  <% if (current_user) %>
+    <% if (answer.user_id == current_user.id) %>
+      <%= link_to 'edit', edit_question_path(question), id: 'edit_question', remote: true %>
+      <%= link_to 'remove', question, method: :delete, data: {confirm: 'Delete message?'}, remote: true %>
+  <% end %>
+<% end %>
