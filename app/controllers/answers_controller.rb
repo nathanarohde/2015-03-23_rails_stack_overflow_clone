@@ -1,5 +1,12 @@
 class AnswersController < ApplicationController
   before_action :require_user, only: [:new]
+  has_many :votes, :as => :voteable
+
+  def upvote
+    @answer = Answer.find(params[:id])
+    @answer.votes.create
+    redirect_to(answers_path)
+
 
   def new
     @question = Question.find(params[:question_id])

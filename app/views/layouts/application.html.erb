@@ -10,6 +10,7 @@
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+  <div class=navbar><%= link_to 'Register ', new_user_path %> | <%= link_to 'Sign in', log_in_path %> | <%= link_to 'Sign out.', log_out_path %></div>
 
 <%= yield %>
 

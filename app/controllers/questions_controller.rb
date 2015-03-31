@@ -8,6 +8,7 @@ before_action :require_user, only: [:new]
   def show
     @question = Question.find(params[:id])
     @user = @question.user
+    @answers = @question.answers
   end
 
   def edit
@@ -31,18 +32,21 @@ before_action :require_user, only: [:new]
   def create
     @question = Question.new(question_params)
     @question.user_id = current_user.id
-    if @question.save
-      flash[:notice] = @question.title + 'Successfully added!'
-      redirect_to questions_path
-    else
-      render :new
+    @question.save
+    respond_to do |format|
+      format.html { redirect_to questions_path }
+      format.js
     end
   end
 
   def destroy
     @question = Question.find(params[:id])
-    @question.destroy
-    redirect_to questions_path
+    if (@question.user_id == current_user.id)
+      @question.destroy
+      redirect_to questions_path
+    else
+      redirect_to root_path
+    end
   end
 
   private

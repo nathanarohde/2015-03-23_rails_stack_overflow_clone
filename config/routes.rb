@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   resources :users, :except => [:destroy, :edit, :update]
   resources :questions do
     resources :answers, :except => [:show, :index]
+      member do
+        post 'upvote'
+      end
   end
 
   get '/log-in' => 'sessions#new'

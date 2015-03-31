@@ -16,19 +16,6 @@ ActiveRecord::Schema.define(version: 20150324210957) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "answerVotes", force: :cascade do |t|
-    t.integer "total"
-    t.integer "answer_id"
-  end
-
-  create_table "answerVotes_users", id: false, force: :cascade do |t|
-    t.integer "answerVote_id"
-    t.integer "user_id"
-  end
-
-  add_index "answerVotes_users", ["answerVote_id"], name: "index_answerVotes_users_on_answerVote_id", using: :btree
-  add_index "answerVotes_users", ["user_id"], name: "index_answerVotes_users_on_user_id", using: :btree
-
   create_table "answers", force: :cascade do |t|
     t.text    "content"
     t.integer "question_id"
@@ -44,5 +31,13 @@ ActiveRecord::Schema.define(version: 20150324210957) do
     t.string "name"
     t.string "email"
   end
+
+  create_table "votes", force: :cascade do |t|
+    t.integer "total"
+    t.integer "voteable_id"
+    t.string  "voteable_type"
+  end
+
+  add_index "votes", ["voteable_type", "voteable_id"], name: "index_votes_on_voteable_type_and_voteable_id", using: :btree
 
 end

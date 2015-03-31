@@ -1,0 +1,19 @@
+<%= form_for @question, remote: true do |f| %>
+  <h4> <%= @question.title %> </h4>
+  <p> <%= @user.name %> </p>
+  <%= link_to 'edit', edit_question_path(@question), id: 'edit_question', remote: true %>
+  <%= link_to 'remove', @question, method: :delete, data: {confirm: 'Delete message?'}, remote: true %>
+
+  <p>
+    <%= @question.content %>
+  </p>
+
+  <%= link_to new_question_answer_path(@question) do %>
+    Answer Question
+  <% end %>
+
+  <br>
+
+  <h5> Answers </h5>
+
+<% end %>
